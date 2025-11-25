@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - GameGate</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <!-- ============================================
+         HEADER & NAVIGATION
+         ============================================ -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <img src="images/logo.png" class="logo-icon" alt="GameGate Logo">
+                <span class="logo-text">GameGate</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#shop" class="nav-link">Shop</a>
+                <a href="index.html#news" class="nav-link">News</a>
+                <a href="profile.html" class="nav-link active">Profile</a>
+            </nav>
+
+            <div class="header-right">
+                <!-- Auth buttons will be dynamically inserted here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+         PROFILE CONTENT
+         ============================================ -->
+    <div class="profile-container">
+        <!-- Profile Header Card -->
+        <div class="profile-header-card">
+            <div class="profile-avatar">
+                <div class="avatar-circle" id="userAvatar">
+                    <!-- User initial will be displayed here -->
+                </div>
+            </div>
+            <div class="profile-header-info">
+                <h1 class="profile-username" id="profileUsername">Loading...</h1>
+                <p class="profile-email" id="profileEmail">Loading...</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalOrders">0</div>
+                        <div class="stat-label">Total Orders</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalSpent">₱0.00</div>
+                        <div class="stat-label">Total Spent</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="memberSince">2025</div>
+                        <div class="stat-label">Member Since</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Account Information Section -->
+        <div class="profile-section">
+            <div class="section-header">
+                <h2>👤 Account Information</h2>
+            </div>
+            <div class="info-card">
+                <div class="info-row">
+                    <div class="info-label">Username</div>
+                    <div class="info-value" id="infoUsername">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Email Address</div>
+                    <div class="info-value" id="infoEmail">-</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Account Type</div>
+                    <div class="info-value">
+                        <span class="account-badge" id="accountRole">User</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Member Since</div>
+                    <div class="info-value" id="infoMemberSince">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction History Section -->
+        <div class="profile-section" id="transactions">
+            <div class="section-header">
+                <h2>🛒 Transaction History</h2>
+                <span class="section-subtitle">Your recent purchases</span>
+            </div>
+            <div id="transactionsList" class="transactions-list">
+                <!-- Transactions will be loaded here -->
+            </div>
+        </div>
+
+        
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <p>&copy; 2025 GameGate. All rights reserved. | Premium In-Game Currency Provider</p>
+    </footer>
+
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
