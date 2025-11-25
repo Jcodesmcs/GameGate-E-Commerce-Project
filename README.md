@@ -1,7 +1,5 @@
 # 🎮 GameGate - E-Commerce Management System
 
-![GameGate Banner](docs/images/banner.png)
-
 A full-stack e-commerce platform for digital game currency sales, built with Python Flask, MySQL, and modern web technologies.
 
 ## 🚀 Features
