@@ -58,4 +58,20 @@ A full-stack e-commerce platform for digital game currency sales, built with Pyt
 ```bash
 git clone https://github.com/yourusername/GameGate-Ecommerce.git
 cd GameGate-Ecommerce
-codeblock1
+cd backend
+pip install -r requirements.txt
+
+2. **Backend Setup**
+# Set environment variables
+export DB_HOST=localhost
+export DB_USER=root
+export DB_PASSWORD=yourpassword
+export DB_NAME=ecurrency
+
+# Start server
+python api_server.py
+
+3. **Frondend Setup
+cd ../frontend/main
+# Serve using any static server
+python -m http.server 8000
