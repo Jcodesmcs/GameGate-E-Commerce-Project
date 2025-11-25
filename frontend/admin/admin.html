@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameGate Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- ============================================
+         ADMIN HEADER
+         ============================================ -->
+    <header class="admin-header">
+        <div class="admin-header-container">
+            <div class="admin-logo">
+                <span class="logo-icon">⚙️</span>
+                <span class="logo-text">Admin</span>
+            </div>
+            <button class="back-btn" onclick="goToMain()">← Back to Main</button>
+        </div>
+    </header>
+
+    <!-- ============================================
+         ADMIN NAVIGATION TABS
+         ============================================ -->
+    <div class="admin-container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('games')">🎮 Manage Games</button>
+            <button class="tab-btn" onclick="showTab('promos')">🎁 Manage Promos</button>
+            <button class="tab-btn" onclick="showTab('news')">📰 Manage News</button>
+            <button class="tab-btn" onclick="showTab('transactions')">📊 Transactions</button>
+        </div>
+
+     <!-- ============================================
+        GAMES MANAGEMENT TAB
+        ============================================ -->
+<div id="games" class="tab-content active">
+    <h2>Manage Games</h2>
+
+    <!-- Add New Game Form -->
+    <!-- REPLACE THE EXISTING GAME FORM SECTION IN admin.html WITH THIS -->
+<!-- Find the section starting with <div class="form-card"><h3>Add New Game</h3> -->
+
+<div class="form-card">
+    <h3>Add New Game</h3>
+    <form id="addGameForm" onsubmit="addGame(event)">
+        <div class="form-group">
+            <label for="gameName">Game Name</label>
+            <input type="text" id="gameName" required placeholder="e.g., Mobile Legends">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="gameCategory">Category</label>
+                <select id="gameCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="MOBA">MOBA</option>
+                    <option value="RPG">RPG</option>
+                    <option value="FPS">FPS</option>
+                    <option value="Casual">Casual</option>
+                    <option value="Battle Royale">Battle Royale</option>
+                    <option value="MMORPG">MMORPG</option>
+                    <option value="Strategies">Strategies</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="gameCurrency">Currency Name</label>
+                <input type="text" id="gameCurrency" required placeholder="e.g., Diamonds">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="gameDescription">Description</label>
+            <textarea id="gameDescription" required placeholder="Describe what players get..."></textarea>
+        </div>
+
+        <!-- EXISTING: Game Image Upload -->
+        <div class="form-group">
+            <label for="gameImage">Game Image (Required) *</label>
+            <div class="image-upload-area">
+                <input 
+                    type="file" 
+                    id="gameImage" 
+                    accept="image/*" 
+                    required 
+                    onchange="previewGameImage(event)"
+                    class="image-input"
+                >
+                <label for="gameImage" class="image-upload-label">
+                    📸 Click to upload game image or drag & drop
+                </label>
+                <div id="gameImagePreview" class="image-preview"></div>
+                <small>Recommended: 300x180px, JPG or PNG format, max 5MB</small>
+            </div>
+        </div>
+
+        <!-- NEW: Currency Icon Upload -->
+        <div class="form-group">
+            <label for="currencyIcon">Currency Icon (Required) *</label>
+            <div class="image-upload-area">
+                <input 
+                    type="file" 
+                    id="currencyIcon" 
+                    accept="image/*" 
+                    required 
+                    onchange="previewCurrencyIcon(event)"
+                    class="image-input"
+                >
+                <label for="currencyIcon" class="image-upload-label">
+                    💰 Click to upload currency icon
+                </label>
+                <div id="currencyIconPreview" class="image-preview"></div>
+                <small>Recommended: 100x100px, JPG or PNG, max 5MB</small>
+            </div>
+        </div>
+
+        <!-- NEW: Price Options Section -->
+        <div class="form-group">
+            <label>💰 Price Options (Add multiple prices)</label>
+            <div id="priceOptionsContainer" class="price-options-container">
+                <div class="price-option-row" id="priceOption-1">
+                    <input type="number" class="price-option-input" placeholder="Amount (e.g., 100)" step="1" min="1" required>
+                    <input type="number" class="price-option-price" placeholder="Price ₱" step="0.01" min="0.01" required>
+                    <button type="button" class="btn-remove-option" onclick="removePriceOption(1)">❌</button>
+                </div>
+            </div>
+            <button type="button" class="btn-add-option" onclick="addPriceOption()">
+                ➕ Add Another Price Option
+            </button>
+        </div>
+
+        <button type="submit" class="btn-add">+ Add Game</button>
+    </form>
+</div>
+
+    <!-- Games List -->
+    <div class="list-card">
+        <h3>Current Games</h3>
+        <div id="gamesList" class="items-list">
+            <!-- Games will be rendered here -->
+        </div>
+    </div>
+</div>
+      
+<!-- ============================================
+     PROMOS MANAGEMENT TAB
+     ============================================ -->
+<div id="promos" class="tab-content">
+    <h2>Manage Promo Images</h2>
+
+    <!-- Add New Promo Form -->
+    <div class="form-card">
+        <h3>Add New Promo Image</h3>
+        <form id="addPromoForm" onsubmit="addPromo(event)">
+            <!-- Image Upload Field for Promo - REQUIRED -->
+            <div class="form-group">
+                <label for="promoImage">Promo Image (Required) *</label>
+                <div class="image-upload-area">
+                    <input 
+                        type="file" 
+                        id="promoImage" 
+                        accept="image/*" 
+                        required 
+                        onchange="previewPromoImage(event)"
+                        class="image-input"
+                    >
+                    <label for="promoImage" class="image-upload-label">
+                        📸 Click to upload promo image or drag & drop
+                    </label>
+                    <div id="promoImagePreview" class="image-preview"></div>
+                    <small>Recommended: 1900 × 400px, JPG or PNG format, max 5MB</small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-add">+ Add Promo Image</button>
+        </form>
+    </div>
+
+    <!-- Promos List -->
+    <div class="list-card">
+        <h3>Current Promo Images</h3>
+        <div id="promosList" class="items-list">
+            <!-- Promos will be rendered here -->
+        </div>
+    </div>
+</div>
+
+        <!-- ============================================
+             NEWS MANAGEMENT TAB
+             ============================================ -->
+        <div id="news" class="tab-content">
+            <h2>Manage News & Updates</h2>
+
+            <!-- Add New News Form -->
+            <div class="form-card">
+                <h3>Add News Update</h3>
+                <form id="addNewsForm" onsubmit="addNews(event)">
+                    <div class="form-group">
+                        <label for="newsTitle">Title</label>
+                        <input type="text" id="newsTitle" required placeholder="e.g., New Games Added!">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsDate">Date</label>
+                            <input type="date" id="newsDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newsIcon">Icon/Emoji</label>
+                            <input type="text" id="newsIcon" required placeholder="🎉" maxlength="2">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newsDescription">Description</label>
+                        <textarea id="newsDescription" required placeholder="Describe the news..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-add">+ Add News</button>
+                </form>
+            </div>
+
+            <!-- News List -->
+            <div class="list-card">
+                <h3>Current News</h3>
+                <div id="newsList" class="items-list">
+                    <!-- News will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add transactions tab content -->
+<div id="transactions" class="tab-content">
+    <h2>📊 Transaction Management</h2>
+    
+    <div class="form-card">
+        <div class="section-header">
+            <h3>📈 Transaction Overview</h3>
+            <div class="admin-controls">
+                <button class="btn-refresh" onclick="renderAdminTransactions()">
+                    🔄 Refresh
+                </button>
+                <button class="btn-export" onclick="exportTransactions()">
+                    📤 Export CSV
+                </button>
+            </div>
+        </div>
+        <div id="transactionsStats" class="storage-overview">
+            <!-- Stats will be populated here -->
+        </div>
+    </div>
+
+    <div class="list-card">
+        <div class="section-header">
+            <h3>All System Transactions</h3>
+            <div class="transaction-count">
+                Total: <strong id="transactionsCount">0</strong> transactions
+            </div>
+        </div>
+        <div id="adminTransactionsList" class="items-list">
+            <!-- All transactions will be loaded here -->
+        </div>
+    </div>
+</div>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="admin-footer">
+        <p>GameGate Admin Panel | All changes are saved to localStorage automatically</p>
+    </footer>
+
+    <script src="../main/api.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
+
+<!-- Add this new tab button with your existing tabs -->
+<div class="tabs">
+    <button class="tab-btn active" onclick="showTab('games')">🎮 Manage Games</button>
+    <button class="tab-btn" onclick="showTab('promos')">🎁 Manage Promos</button>
+    <button class="tab-btn" onclick="showTab('news')">📰 Manage News</button>
+    <button class="tab-btn" onclick="showTab('localstorage')">💾 LocalStorage</button>
+</div>
+
+<!-- Add this new tab content section -->
+<div id="localstorage" class="tab-content">
+    <h2>💾 LocalStorage Manager</h2>
+    
+    <!-- Storage Overview -->
+    <div class="form-card">
+        <h3>📊 Storage Overview</h3>
+        <div id="storageOverview" class="storage-overview">
+            <!-- Overview will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Games Data Section -->
+    <div class="list-card">
+        <div class="section-header">
+            <h3>🎮 Games Data</h3>
+            <button class="btn-delete" onclick="clearAllGames()">🗑️ Clear All Games</button>
+        </div>
+        <div class="data-viewer">
+            <pre id="gamesData"></pre>
+        </div>
+    </div>
+
+    <!-- Promos Data Section -->
+    <div class="list-card">
+        <div class="section-header">
+            <h3>🎁 Promos Data</h3>
+            <button class="btn-delete" onclick="clearAllPromos()">🗑️ Clear All Promos</button>
+        </div>
+        <div class="data-viewer">
+            <pre id="promosData"></pre>
+        </div>
+    </div>
+
+    <!-- Users Data Section -->
+    <div class="list-card">
+        <div class="section-header">
+            <h3>👥 Users Data</h3>
+            <button class="btn-delete" onclick="clearAllUsers()">🗑️ Clear All Users</button>
+        </div>
+        <div class="data-viewer">
+            <pre id="usersData"></pre>
+        </div>
+    </div>
+
+    <!-- Session Data Section -->
+    <div class="list-card">
+        <div class="section-header">
+            <h3>🔐 Session Data</h3>
+            <button class="btn-delete" onclick="clearSession()">🗑️ Clear Session</button>
+        </div>
+        <div class="data-viewer">
+            <pre id="sessionData"></pre>
+        </div>
+    </div>
+
+    <!-- All LocalStorage Data -->
+    <div class="list-card">
+        <div class="section-header">
+            <h3>🔍 All LocalStorage Items</h3>
+            <button class="btn-delete" onclick="clearAllLocalStorage()">🗑️ Clear Everything</button>
+        </div>
+        <div class="data-viewer">
+            <pre id="allLocalStorageData"></pre>
+        </div>
+    </div>
+</div>
