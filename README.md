@@ -1,5 +1,10 @@
 # 🎮 GameGate - E-Commerce Management System
 
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Flask](https://img.shields.io/badge/flask-2.3.3-green)
+![MySQL](https://img.shields.io/badge/mysql-5.7%2B-orange)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 A full-stack e-commerce platform for digital game currency sales, built with Python Flask, MySQL, and modern web technologies.
 
 ## 🚀 Features
@@ -46,29 +51,3 @@ A full-stack e-commerce platform for digital game currency sales, built with Pyt
 - Python 3.8+
 - MySQL 5.7+
 - Modern web browser
-
-### Quick Start
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/GameGate-Ecommerce.git
-cd GameGate-Ecommerce
-
-2. **Clone the repository**
-'''bash
-cd backend
-pip install -r requirements.txt
-
-# Set environment variables
-export DB_HOST=localhost
-export DB_USER=root
-export DB_PASSWORD=yourpassword
-export DB_NAME=ecurrency
-
-# Start server
-python api_server.py
-
-3. **Frontend Setup**
-cd ../frontend/main
-# Serve using any static server
-python -m http.server 8000
