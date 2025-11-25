@@ -1,3 +1,7 @@
+
+## **Solution (Correct Formatting):**
+
+```markdown
 # 🎮 GameGate - E-Commerce Management System
 
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
@@ -51,3 +55,10 @@ A full-stack e-commerce platform for digital game currency sales, built with Pyt
 - Python 3.8+
 - MySQL 5.7+
 - Modern web browser
+
+### Quick Start
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/GameGate-Ecommerce.git
+cd GameGate-Ecommerce
