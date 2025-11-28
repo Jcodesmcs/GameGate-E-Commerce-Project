@@ -60,10 +60,10 @@ git clone https://github.com/yourusername/GameGate-Ecommerce.git
 cd GameGate-Ecommerce
 cd backend
 pip install -r requirements.txt
-'''
+```
 
 2. **Backend Setup**
-'''bash
+```bash
 # Set environment variables
 export DB_HOST=localhost
 export DB_USER=root
@@ -72,11 +72,11 @@ export DB_NAME=ecurrency
 
 # Start server
 python api_server.py
-'''
+```
 
 3. **Frondend Setup**
-'''bash
+```bash
 cd ../frontend/main
 # Serve using any static server
 python -m http.server 8000
-'''
+```
